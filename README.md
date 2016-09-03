@@ -54,6 +54,16 @@ key (any type): key to obtain the value from the cache.
 Returns:
 (any type): the cached value or false if the lifetime value has expired or value is not exist.
 
+### set value in cache
+```js
+cache.set(key, value, [ttl = null]);
+```
+Arguments:
+key (any type): key by which it will be possible to get the value from the cache.
+
+Returns:
+(boolean): it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
+
 ## License
 
 The MIT License (MIT)
