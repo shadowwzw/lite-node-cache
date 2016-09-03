@@ -12,6 +12,8 @@ This module for [node](http://nodejs.org).
 $ npm install lite-node-cache
 ```
 
+## Usage
+
 ```js
 var Cache = require("lite-node-cache");
 var cache = new Cache({
