@@ -1,0 +1,30 @@
+{
+  "name": "lite-node-cache",
+  "version": "0.1.8",
+  "description": "Universal module for copy databases, http requests and more. Fast start. It is easy to understand.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shadowwzw/lite-node-cache.git"
+  },
+  "keywords": [
+    "node",
+    "cache",
+    "lite",
+    "universal"
+  ],
+  "author": "Gavrilov Ruslan shadowwzw <miditab@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shadowwzw/universal-lite-node-cache/issues"
+  },
+  "homepage": "https://github.com/shadowwzw/universal-lite-node-cache#readme",
+  "dependencies" :
+  { 
+    "lodash" : ">=4.15.0",
+    "bluebird": ">=3.4.6"
+  }
+}
