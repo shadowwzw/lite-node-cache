@@ -201,12 +201,3 @@ module.exports = class Cache {
         }
     }
 };
-
-// Example
-// var Cache = require('./cache');
-//mysqlCache = new Cache({
-//    ttl: 5000,
-//    garbageCollectorTimeInterval: 10000,
-//    garbageCollectorAsyncMode: false,
-//    debugMode: true
-//});
