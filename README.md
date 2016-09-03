@@ -44,7 +44,7 @@ setTimeout(function () {
 
 ## Api
 
-# get value for cache
+### get value for cache
 ```js
 cache.get(key);
 ```
