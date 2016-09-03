@@ -1,4 +1,3 @@
-/*jshint esversion: 6 */
 const Promise = require('bluebird');
 const _ = require('lodash');
 module.exports = class Cache {
