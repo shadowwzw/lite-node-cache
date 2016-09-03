@@ -2,10 +2,9 @@
 Universal module for caching databases query, http requests and more. Fast start. It is easy to understand.
 This module for [node](http://nodejs.org).
 
-<p align="center">
-    <img src="http://img.shields.io/npm/v/npm.svg"
-         height="130">
-</p>
+[![Latest Stable Version](https://img.shields.io/npm/v/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
+[![License](https://img.shields.io/npm/l/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
+[![NPM Downloads](https://img.shields.io/npm/dt/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
 
 ## Installation
 
