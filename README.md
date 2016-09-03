@@ -58,7 +58,7 @@ var cacheInstance = new Cache({
 
 options (Object type):
 
-ttl (Integer) - the lifetime of the recording in milliseconds,
+ttl (Integer) (default value: 30000) - the lifetime of the recording in milliseconds,
 
 garbageCollectorTimeInterval (Integer) (default value: 10000) - frequency of garbage collector,
 
