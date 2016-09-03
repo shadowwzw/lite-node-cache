@@ -3,7 +3,7 @@ Universal module for caching databases query, http requests and more. Fast start
 This module for [node](http://nodejs.org).
 
 <p align="center">
-    <img src="https://rawgit.com/badges/shields/master/logo.svg"
+    <img src="http://img.shields.io/npm/v/npm.svg"
          height="130">
 </p>
 
