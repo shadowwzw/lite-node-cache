@@ -24,7 +24,7 @@
   "homepage": "https://github.com/shadowwzw/universal-lite-node-cache#readme",
   "dependencies" :
   { 
-    "lodash" : ">=4.15.0",
-    "bluebird": ">=3.4.6"
+    "lodash" : ">=4.0.0",
+    "bluebird": ">=3.0.0"
   }
 }

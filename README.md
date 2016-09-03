@@ -36,7 +36,7 @@ setTimeout(function () {
 }, 6500);
 ```
 
-## Example with hhtp request
+## Example with http request
 
 ```js
 
