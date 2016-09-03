@@ -17,7 +17,7 @@
     "universal"
   ],
   "author": "Gavrilov Ruslan shadowwzw <miditab@yandex.ru>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/shadowwzw/universal-lite-node-cache/issues"
   },
