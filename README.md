@@ -1,7 +1,7 @@
-# universal-lite-node-cache
+# lite-node-cache
 Universal module for caching databases query, http requests and more. Fast start. It is easy to understand.
 
-npm install universal-lite-node-cache
+npm install lite-node-cache
 
   "dependencies" :
   { 
