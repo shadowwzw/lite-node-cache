@@ -44,6 +44,26 @@ setTimeout(function () {
 
 ## Api
 
+### create cacheInstance
+```js
+var Cache = require("lite-node-cache");
+var cacheInstance = new Cache({
+    ttl: 6000,
+    garbageCollectorTimeInterval: 10000,
+    garbageCollectorAsyncMode: false,
+    debugMode: true
+});
+```
+Arguments:
+options (Object type):
+ttl (Integer) - the lifetime of the recording in milliseconds,
+garbageCollectorTimeInterval (Integer) (default value: 10000) - frequency of garbage collector,
+garbageCollectorAsyncMode (Boolean) (default value: false) - Asynchronous cleaning mode in order not to block the execution of the script,
+debugMode (Boolean) (default value: false) - In this mode, you will receive valuable information that will help you to debug the script.
+
+Returns:
+(any type): the cached value or false if the lifetime value has expired or value is not exist.
+
 ### get value for cache
 ```js
 cacheInstance.get(key);
