@@ -54,7 +54,7 @@ var cacheInstance = new Cache({
     debugMode: true
 });
 ```
-Arguments:
+####Arguments:
 
 options (Object type):
 
@@ -66,27 +66,28 @@ garbageCollectorAsyncMode (Boolean) (default value: false) - Asynchronous cleani
 
 debugMode (Boolean) (default value: false) - In this mode, you will receive valuable information that will help you to debug the script.
 
-Returns:
+#### Returns:
+
 (any type): the cached value or false if the lifetime value has expired or value is not exist.
 
 ### get value for cache
 ```js
 cacheInstance.get(key);
 ```
-Arguments:
+#### Arguments:
 key (any type): key to obtain the value from the cache.
 
-Returns:
+#### Returns:
 (any type): the cached value or false if the lifetime value has expired or value is not exist.
 
 ### set value in cache
 ```js
 cacheInstance.set(key, value, [ttl = null]);
 ```
-Arguments:
+#### Arguments:
 key (any type): key by which it will be possible to get the value from the cache.
 
-Returns:
+#### Returns:
 (boolean): it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
 
 ## License
