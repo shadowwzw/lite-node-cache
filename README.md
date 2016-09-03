@@ -42,6 +42,17 @@ setTimeout(function () {
 
 ```
 
+## Api
+
+```js
+cache.get(key);
+```
+Arguments:
+key (any type): key to obtain the value from the cache.
+
+Returns:
+(any type): the cached value or false if the lifetime value has expired or value is not exist.
+
 ## License
 
 The MIT License (MIT)
