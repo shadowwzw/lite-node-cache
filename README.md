@@ -12,6 +12,25 @@ This module for [node](http://nodejs.org).
 $ npm install lite-node-cache
 ```
 
+```js
+var Cache = require("lite-node-cache");
+var cache = new Cache({
+    ttl: 6000 // the lifetime of the recording in milliseconds
+});
+
+cache.set("key1", "value1");
+
+setTimeout(function () {
+    var item = cache.get("key1");
+    console.log(item); // "value1"
+}, 3000);
+
+setTimeout(function () {
+    var item = cache.get("key1");
+    console.log(item); // false
+}, 6500);
+```
+
 ## License
 
 The MIT License (MIT)
