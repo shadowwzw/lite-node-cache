@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 const Promise = require('bluebird');
 const _ = require('lodash');
 module.exports = class Cache {
@@ -92,7 +93,7 @@ module.exports = class Cache {
     mget(keys) {
         var resultArray = [];
         for (var i = 0; i < keys.length; i++) {
-            resultArray.push(this.get(keys[i]))
+            resultArray.push(this.get(keys[i]));
         }
         return resultArray;
     }
@@ -167,7 +168,7 @@ module.exports = class Cache {
                 }
             }, 0);
         });
-    };
+    }
 
     garbageCollectorAsync() {
         if (!this.garbageCollectorIsExecuted) {
