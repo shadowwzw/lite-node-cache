@@ -20,17 +20,26 @@ var cache = new Cache({
     ttl: 6000 // the lifetime of the recording in milliseconds
 });
 
+// set new item in cache
 cache.set("key1", "value1");
 
+// get value from cache after 3 seconds
 setTimeout(function () {
     var item = cache.get("key1");
     console.log(item); // "value1"
 }, 3000);
 
+// get value from cache after 6.5 seconds
 setTimeout(function () {
     var item = cache.get("key1");
     console.log(item); // false
 }, 6500);
+```
+
+## Example with hhtp request
+
+```js
+
 ```
 
 ## License
