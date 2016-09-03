@@ -2,7 +2,10 @@
 Universal module for caching databases query, http requests and more. Fast start. It is easy to understand.
 This module for [node](http://nodejs.org).
 
-<img src="https://rawgit.com/badges/shields/master/logo.svg"
+<p align="center">
+    <img src="https://rawgit.com/badges/shields/master/logo.svg"
+         height="130">
+</p>
 
 ## Installation
 
