@@ -39,7 +39,30 @@ setTimeout(function () {
 ## Example with http request
 
 ```js
+var Cache = require("lite-node-cache");
+var request = require('request');
+var cacheInstance = new Cache({
+    ttl: 6000, // the lifetime of the recording in milliseconds
+    garbageCollectorTimeInterval: 10000,
+    garbageCollectorAsyncMode: false,
+    debugMode: true
+});
 
+setInterval(function () {
+    var url = "http://google.ru";
+    var result = cacheInstance.get(url);
+    if (result) {
+       console.log("get value from cache");
+       // do something with result...
+    } else {
+        request(url, function (err, result) {
+            if (err) console.log(err.message);
+            cacheInstance.set(url, result);
+            console.log("new request and save in cache");
+            // do something with result...
+        });
+    }
+}, 1000);
 ```
 
 ## Api
