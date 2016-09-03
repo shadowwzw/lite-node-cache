@@ -70,7 +70,7 @@ debugMode (Boolean) (default value: false) - In this mode, you will receive valu
 
 (any type): the cached value or false if the lifetime value has expired or value is not exist.
 
-### get value for cache
+### get value from cache
 ```js
 cacheInstance.get(key);
 ```
