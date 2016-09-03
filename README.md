@@ -55,10 +55,15 @@ var cacheInstance = new Cache({
 });
 ```
 Arguments:
+
 options (Object type):
+
 ttl (Integer) - the lifetime of the recording in milliseconds,
+
 garbageCollectorTimeInterval (Integer) (default value: 10000) - frequency of garbage collector,
+
 garbageCollectorAsyncMode (Boolean) (default value: false) - Asynchronous cleaning mode in order not to block the execution of the script,
+
 debugMode (Boolean) (default value: false) - In this mode, you will receive valuable information that will help you to debug the script.
 
 Returns:
