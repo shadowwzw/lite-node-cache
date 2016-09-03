@@ -6,7 +6,7 @@ module.exports = class Cache {
         this.debugMode = debugMode;
         this.storage = new Map();
         if (Number.isInteger(ttl)) {
-            this.ttl = ttl; // в миллисекундах.
+            this.ttl = ttl;
         } else {
             throw new Error("universal-lite-node-cache: ttl parameter is not valid");
         }
