@@ -46,7 +46,7 @@ setTimeout(function () {
 
 ### get value for cache
 ```js
-cache.get(key);
+cacheInstance.get(key);
 ```
 Arguments:
 key (any type): key to obtain the value from the cache.
@@ -56,7 +56,7 @@ Returns:
 
 ### set value in cache
 ```js
-cache.set(key, value, [ttl = null]);
+cacheInstance.set(key, value, [ttl = null]);
 ```
 Arguments:
 key (any type): key by which it will be possible to get the value from the cache.
