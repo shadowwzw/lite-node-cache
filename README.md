@@ -117,7 +117,7 @@ key (any type): key by which it will be possible to get the value from the cache
 ## Testing
 
 ```bash
-$ npm install mocha
+$ npm install mocha -g
 $ cd lite-node-cache
 $ mocha test.js
 ```
