@@ -1,4 +1,4 @@
-const Promise = require('bluebird');
+const bluebird = require('bluebird');
 const _ = require('lodash');
 module.exports = class Cache {
     constructor({ttl = 30000, garbageCollectorTimeInterval = 10000, garbageCollectorAsyncMode = false,  debugMode = false} = {}) {
@@ -48,7 +48,7 @@ module.exports = class Cache {
     }
 
     getAsync(key) {
-        return new Promise(function (resolve, reject) {
+        return new bluebird(function (resolve, reject) {
             setTimeout(()=> {
                 try {
                     var result = this.get(key);
@@ -77,7 +77,7 @@ module.exports = class Cache {
     }
 
     setAsync(key, value, ttl) {
-        return new Promise(function (resolve, reject) {
+        return new bluebird(function (resolve, reject) {
             setTimeout(()=> {
                 try {
                     var result = this.set(key, value, ttl);
@@ -143,7 +143,7 @@ module.exports = class Cache {
     }
 
     removeGarbageAsync(key) {
-        return new Promise((resolve, reject)=> {
+        return new bluebird((resolve, reject)=> {
             setTimeout(()=> {
                 try {
                     if (this.storage.has(key)) {
@@ -175,9 +175,9 @@ module.exports = class Cache {
             this.debug("universal-lite-node-cache: garbage collector started in async mode");
             let self = this;
 
-            Promise.coroutine(function* GCLoop() {
+            bluebird.coroutine(function* GCLoop() {
                 try {
-                    yield Promise.delay(self.garbageCollectorTimeInterval);
+                    yield bluebird.delay(self.garbageCollectorTimeInterval);
                     let removedArray = [];
                     for (let i = 0; i < self.elements.length; i++) {
                         removedArray.push(self.removeGarbageAsync(self.elements[i], self).then(function (result) {
@@ -185,13 +185,13 @@ module.exports = class Cache {
                         }));
                     }
                     if (self.debugMode)
-                        Promise.coroutine(function* () {
-                            var removedArrayResolved = yield Promise.all(removedArray);
+                        bluebird.coroutine(function* () {
+                            var removedArrayResolved = yield bluebird.all(removedArray);
                             removedArrayResolved = _.compact(removedArrayResolved);
                             if (removedArrayResolved.length)
                                 self.debug("universal-lite-node-cache: the garbage collector made ​​a clean cache (removed " + removedArrayResolved.length + " items)");
                         })();
-                    yield Promise.coroutine(GCLoop)();
+                    yield bluebird.coroutine(GCLoop)();
                 } catch (err) {
                     self.debug("universal-lite-node-cache: " + err);
                 }
