@@ -51,6 +51,16 @@ describe('lite-node-cache', function() {
           }
         });
 
+        it("delete key test", function functionName() {
+          assert(!cacheInstance.set("key1", "value1"), "set new key must return false");
+          assert.strictEqual(cacheInstance.get("key1"), "value1");
+          assert(cacheInstance.delete("key1"), "after removal should return true");
+          assert(!cacheInstance.get("key1"), "should return False because the key does not exist.");
+          assert.strictEqual(_.findIndex(cacheInstance.elements, function functionName(item) {
+            return item === "key1";
+          }), -1);
+        });
+
         it("get keys in loop (1 to 10)", function functionName() {
           for(let i = 0; i < 10; i++){
             assert(cacheInstance.set(i, i), "if the key is rewritten should return true");

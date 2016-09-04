@@ -34,7 +34,7 @@ module.exports = class Cache {
                 var ttl = (item.ttl !== null) ? item.ttl : this.ttl;
                 if (Date.now() - item.created > ttl) {
                     this.debug("universal-lite-node-cache: Remove the key when get. ttl elapsed.");
-                    this.storage.delete(key);
+                    this.delete(key);
                     return false;
                 } else {
                     return item.value;
@@ -74,6 +74,17 @@ module.exports = class Cache {
         this.storage.set(key, item);
         this.elements.push(key);
         return has;
+    }
+
+    delete(key) {
+        if(this.storage.delete(key)){
+          _.remove(this.elements, function functionName(item) {
+            return item === key;
+          });
+          return true;
+        }else{
+          return false;
+        }
     }
 
     setAsync(key, value, ttl) {
@@ -118,7 +129,8 @@ module.exports = class Cache {
                 if(item.ttl !== 0){
                     var ttl = ( item.ttl !== null) ? item.ttl : this.ttl;
                     if (Date.now() - item.created > ttl) {
-                        this.storage.delete(key);
+                        this.delete(key);
+                        i--;
                         removedCount++;
                     }
                 }
@@ -151,7 +163,7 @@ module.exports = class Cache {
                         if(item.ttl !== 0){
                             var ttl = ( item.ttl !== null ) ? item.ttl : this.ttl;
                             if (Date.now() - item.created > ttl) {
-                                this.storage.delete(key);
+                                this.delete(key);
                                 resolve(true);
                             } else {
                                 resolve(false);

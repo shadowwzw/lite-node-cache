@@ -1,5 +1,5 @@
 # lite-node-cache
-Universal module for caching databases query, http requests and more. Fast start. It is easy to understand.
+Universal module for caching databases query, http requests and more. Fast start. It is easy to understand. Good test coverage.
 This module for [node](http://nodejs.org).
 
 [![Latest Stable Version](https://img.shields.io/npm/v/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
