@@ -5,7 +5,7 @@ var bluebird = require("bluebird");
 
 describe('lite-node-cache', function() {
   describe('create cacheInstance', function functionName() {
-    it("create instance without arguments", function functionName() {
+    it("create instance", function functionName() {
       var cacheInstance = new Cache({ ttl: 200, debugMode: false});
       assert(_.isObjectLike(cacheInstance), "cacheInstance is not a object");
       assert(_.isFunction(cacheInstance.get, "cacheInstance.get is not a function"));
