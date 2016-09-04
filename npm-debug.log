@@ -1,0 +1,112 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.10.3
+3 info using node@v6.5.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'C:\\Users\\shadowwzw\\WebstormProjects\\lite-node-cache',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\shadowwzw\AppData\Roaming\npm-cache\lite-node-cache\0.2.9\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\shadowwzw\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle lite-node-cache@0.2.9~prepublish: lite-node-cache@0.2.9
+11 silly lifecycle lite-node-cache@0.2.9~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\shadowwzw\\AppData\\Roaming\\npm-cache\\lite-node-cache\\0.2.9\\package.tgz',
+12 verbose tar pack   'C:\\Users\\shadowwzw\\WebstormProjects\\lite-node-cache' ]
+13 verbose tarball C:\Users\shadowwzw\AppData\Roaming\npm-cache\lite-node-cache\0.2.9\package.tgz
+14 verbose folder C:\Users\shadowwzw\WebstormProjects\lite-node-cache
+15 verbose addLocalTarball adding from inside cache C:\Users\shadowwzw\AppData\Roaming\npm-cache\lite-node-cache\0.2.9\package.tgz
+16 verbose correctMkdir C:\Users\shadowwzw\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd lite-node-cache@0.2.9
+18 verbose afterAdd C:\Users\shadowwzw\AppData\Roaming\npm-cache\lite-node-cache\0.2.9\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\shadowwzw\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\shadowwzw\AppData\Roaming\npm-cache\lite-node-cache\0.2.9\package\package.json written
+21 silly publish { name: 'lite-node-cache',
+21 silly publish   version: '0.2.9',
+21 silly publish   description: 'Universal module for caching databases query, http requests and more. Fast start. It is easy to understand.',
+21 silly publish   main: 'index.js',
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/shadowwzw/lite-node-cache.git' },
+21 silly publish   keywords: [ 'node', 'cache', 'lite', 'universal' ],
+21 silly publish   author:
+21 silly publish    { name: 'Gavrilov Ruslan shadowwzw',
+21 silly publish      email: 'miditab@yandex.ru' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/shadowwzw/universal-lite-node-cache/issues' },
+21 silly publish   homepage: 'https://github.com/shadowwzw/universal-lite-node-cache#readme',
+21 silly publish   dependencies: { lodash: '>=4.0.0', bluebird: '>=3.0.0' },
+21 silly publish   readme: '# lite-node-cache\r\nUniversal module for caching databases query, http requests and more. Fast start. It is easy to understand.\r\nThis module for [node](http://nodejs.org).\r\n\r\n[![Latest Stable Version](https://img.shields.io/npm/v/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)\r\n[![License](https://img.shields.io/npm/l/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)\r\n[![NPM Downloads](https://img.shields.io/npm/dt/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)\r\n\r\n## Installation\r\n\r\n```bash\r\n$ npm install lite-node-cache\r\n```\r\n\r\n## Usage\r\n\r\n```js\r\nvar Cache = require("lite-node-cache");\r\nvar cacheInstance = new Cache({\r\n    ttl: 6000 // the lifetime of the recording in milliseconds\r\n});\r\n\r\n// set new item in cache\r\ncacheInstance.set("key1", "value1");\r\n\r\n// get value from cache after 3 seconds\r\nsetTimeout(function () {\r\n    var item = cacheInstance.get("key1");\r\n    console.log(item); // "value1"\r\n}, 3000);\r\n\r\n// get value from cache after 6.5 seconds\r\nsetTimeout(function () {\r\n    var item = cacheInstance.get("key1");\r\n    console.log(item); // false\r\n}, 6500);\r\n```\r\n\r\n## Example with http request\r\n\r\n```js\r\nvar Cache = require("lite-node-cache");\r\nvar request = require(\'request\');\r\nvar cacheInstance = new Cache({\r\n    ttl: 6000, // the lifetime of the recording in milliseconds\r\n    garbageCollectorTimeInterval: 10000,\r\n    garbageCollectorAsyncMode: false,\r\n    debugMode: true\r\n});\r\n\r\nsetInterval(function () {\r\n    var url = "http://google.ru";\r\n    var result = cacheInstance.get(url);\r\n    if (result) {\r\n       console.log("get value from cache");\r\n       // do something with result...\r\n    } else {\r\n        request(url, function (err, result) {\r\n            if (err) console.log(err.message);\r\n            cacheInstance.set(url, result);\r\n            console.log("new request and save in cache");\r\n            // do something with result...\r\n        });\r\n    }\r\n}, 1000);\r\n```\r\n\r\n## Api\r\n\r\n### create cacheInstance\r\n```js\r\nvar Cache = require("lite-node-cache");\r\nvar cacheInstance = new Cache({\r\n    ttl: 6000,\r\n    garbageCollectorTimeInterval: 10000,\r\n    garbageCollectorAsyncMode: false,\r\n    debugMode: true\r\n});\r\n```\r\n####Arguments:\r\n\r\noptions (Object type):\r\n\r\nttl (Integer) (default value: 30000) - the lifetime of the recording in milliseconds,\r\n\r\ngarbageCollectorTimeInterval (Integer) (default value: 10000) - frequency of garbage collector,\r\n\r\ngarbageCollectorAsyncMode (Boolean) (default value: false) - Asynchronous cleaning mode in order not to block the execution of the script,\r\n\r\ndebugMode (Boolean) (default value: false) - In this mode, you will receive valuable information that will help you to debug the script.\r\n\r\n#### Returns:\r\n\r\n(any type): the cached value or false if the lifetime value has expired or value is not exist.\r\n\r\n### get value from cache\r\n```js\r\ncacheInstance.get(key);\r\n```\r\n#### Arguments:\r\nkey (any type): key to obtain the value from the cache.\r\n\r\n#### Returns:\r\n(any type): the cached value or false if the lifetime value has expired or value is not exist.\r\n\r\n### set value in cache\r\n```js\r\ncacheInstance.set(key, value, [ttl = null]);\r\n```\r\n#### Arguments:\r\nkey (any type): key by which it will be possible to get the value from the cache.\r\n\r\n#### Returns:\r\n(boolean): it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.\r\n\r\n\r\n## Testing\r\n\r\n```bash\r\n$ npm install mocha -g\r\n$ cd lite-node-cache\r\n$ mocha test.js\r\n```\r\n\r\n\r\n## License\r\n\r\nThe MIT License (MIT)\r\n\r\nCopyright (c) 2016 Gavrilov Ruslan\r\n\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\r\n\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\n\r\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\r\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '8bc0456ffac129495775d8a1263b367d51c85264',
+21 silly publish   _id: 'lite-node-cache@0.2.9',
+21 silly publish   _shasum: 'd3cb8c635820ccadedc7ccee307e1426b1aaf09d',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name lite-node-cache
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'lite-node-cache',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   escapedName: 'lite-node-cache',
+26 silly mapToRegistry   name: 'lite-node-cache',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/lite-node-cache
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading C:\Users\shadowwzw\AppData\Roaming\npm-cache\lite-node-cache\0.2.9\package.tgz
+30 verbose request uri https://registry.npmjs.org/lite-node-cache
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 13:37:35
+33 verbose request using bearer token for auth
+34 verbose request id 313b7030e4c3b05a
+35 http request PUT https://registry.npmjs.org/lite-node-cache
+36 http 403 https://registry.npmjs.org/lite-node-cache
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Sun, 04 Sep 2016 09:37:33 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-bma7029-BMA',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1472981851.837301,VS0,VE1598',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating C:\Users\shadowwzw\AppData\Roaming\npm-cache\registry.npmjs.org\lite-node-cache on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 0.2.9." : lite-node-cache
+40 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:252:14)
+40 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+40 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:200:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1067:10)
+40 verbose stack     at emitOne (events.js:101:20)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid lite-node-cache
+43 verbose cwd C:\Users\shadowwzw\WebstormProjects\lite-node-cache
+44 error Windows_NT 10.0.10586
+45 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+46 error node v6.5.0
+47 error npm  v3.10.3
+48 error code E403
+49 error "You cannot publish over the previously published version 0.2.9." : lite-node-cache
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
