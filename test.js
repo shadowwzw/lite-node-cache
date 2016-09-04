@@ -19,12 +19,12 @@ describe('lite-node-cache', function() {
       assert(_.isFunction(cacheInstance.removeGarbageAsync, "cacheInstance.removeGarbageAsync is not a function"));
       assert(_.isFunction(cacheInstance.garbageCollectorAsync, "cacheInstance.garbageCollectorAsync is not a function"));
 
-      describe('set new key (number), value (number), ttl is defalut and get all', function() {
+      describe('testing get and set, ttl is defalut and get all', function() {
 
         it("set keys in loop (1 to 10)", function functionName() {
           for(let i = 0; i < 10; i++){
             assert(!cacheInstance.set(i, i), "set new key must return false");
-            assert.strictEqual(cacheInstance.get(i, i), i);
+            assert.strictEqual(cacheInstance.get(i), i);
 
             assert(!cacheInstance.set(i+"", { prop: i}), "set new key must return false");
             assert.strictEqual(cacheInstance.get(i+"").prop, i);
@@ -32,15 +32,28 @@ describe('lite-node-cache', function() {
             assert(!cacheInstance.set(i+"1", [i]), "set new key must return false");
             assert.strictEqual(cacheInstance.get(i+"1")[0], i);
 
-            // assert(!cacheInstance.set({ prop: 1}, i), "set new key must return false");
-            // assert.strictEqual(cacheInstance.get({ prop: 1}, i), i);
+            let array = [i];
+            assert(!cacheInstance.set(array, i), "set new key must return false");
+            assert.strictEqual(cacheInstance.get(array), i);
+
+            let obj = {prop: i};
+            assert(!cacheInstance.set(obj, i), "set new key must return false");
+            assert.strictEqual(cacheInstance.get(obj), i);
+
+            let array2 = [i];
+            assert(!cacheInstance.set(array2, array), "set new key must return false");
+            assert.strictEqual(cacheInstance.get(array2), array);
+
+            let obj2 = {prop: i};
+            assert(!cacheInstance.set(obj2, obj), "set new key must return false");
+            assert.strictEqual(cacheInstance.get(obj2), obj);
           }
         });
 
         it("get keys in loop (1 to 10)", function functionName() {
           for(let i = 0; i < 10; i++){
             assert(cacheInstance.set(i, i), "if the key is rewritten should return true");
-            assert.strictEqual(cacheInstance.get(i, i), i);
+            assert.strictEqual(cacheInstance.get(i), i);
           }
         });
 
@@ -48,7 +61,7 @@ describe('lite-node-cache', function() {
           setTimeout(function functionName() {
             for(let i = 0; i < 10; i++){
               assert(cacheInstance.set(i, i), "if the key is rewritten should return true");
-              assert.strictEqual(cacheInstance.get(i, i), i);
+              assert.strictEqual(cacheInstance.get(i), i);
             }
             done();
           }, 100);
@@ -57,9 +70,9 @@ describe('lite-node-cache', function() {
         it("get ans set keys in loop (1 to 10) after 1100 ms", function functionName(done) {
           setTimeout(function functionName() {
             for(let i = 0; i < 10; i++){
-              assert.strictEqual(cacheInstance.get(i, i), false);
+              assert.strictEqual(cacheInstance.get(i), false);
               assert(!cacheInstance.set(i, i), "set new key must return false");
-              assert.strictEqual(cacheInstance.get(i, i), i);
+              assert.strictEqual(cacheInstance.get(i), i);
             }
             done();
           }, 300);
