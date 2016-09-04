@@ -113,6 +113,16 @@ key (any type): key by which it will be possible to get the value from the cache
 #### Returns:
 (boolean): it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
 
+
+## Testing
+
+```bash
+$ npm install mocha
+$ cd lite-node-cache
+$ mocha test.js
+```
+
+
 ## License
 
 The MIT License (MIT)
