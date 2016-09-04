@@ -1,7 +1,6 @@
 var assert = require("assert");
 var _ = require("lodash");
 var Cache = require("lite-node-cache");
-var bluebird = require("bluebird");
 
 describe('lite-node-cache', function() {
   describe('create cacheInstance', function functionName() {
