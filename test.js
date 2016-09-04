@@ -116,4 +116,22 @@ describe('lite-node-cache', function() {
       });
   });
 
+  describe("Testing custom ttl", function functionName() {
+    var cacheInstance2 = new Cache({ ttl: 50, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 10,  debugMode: false});
+    it("Remove Expired keys", function functionName(done) {
+      cacheInstance2.set(22, 22, 150);
+      assert.strictEqual(cacheInstance2.get(22), 22);
+
+      setTimeout(function functionName() {
+        assert(cacheInstance2.set(22, 22, 100), "should return true if a key replacement");
+
+        setTimeout(function functionName() {
+          assert(!cacheInstance2.set(22, 22), "garbage collector did not remove the expired key");
+          done();
+        }, 150);
+      }, 100);
+
+      });
+  });
+
 });
