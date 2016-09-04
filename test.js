@@ -45,7 +45,7 @@ describe('lite-node-cache', function() {
           }
         });
 
-        it("set keys in loop (1 to 10) after 500 ms", function functionName(done) {
+        it("set and get keys in loop (1 to 10) after 500 ms", function functionName(done) {
           setTimeout(function functionName() {
             for(let i = 0; i < 10; i++){
               assert(cacheInstance.set(i, i), "if the key is rewritten should return true");
@@ -55,7 +55,7 @@ describe('lite-node-cache', function() {
           }, 100);
         });
 
-        it("set keys in loop (1 to 10) after 1100 ms", function functionName(done) {
+        it("get ans set keys in loop (1 to 10) after 1100 ms", function functionName(done) {
           setTimeout(function functionName() {
             for(let i = 0; i < 10; i++){
               assert.strictEqual(cacheInstance.get(i, i), false);
@@ -69,9 +69,4 @@ describe('lite-node-cache', function() {
     });
   });
 
-  describe('save key (number), save value (number)', function() {
-    // it('should return -1 when the value is not present', function() {
-    //   assert.equal(-1, [1,2,3].indexOf(4));
-    // });
-  });
 });
