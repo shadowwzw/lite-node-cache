@@ -79,11 +79,31 @@ describe('lite-node-cache', function() {
           }, 300);
         });
       });
-
-      describe("testing garbageCollector", function functionName() {
-        
-      });
     });
+  });
+
+  describe("testing garbageCollector", function functionName() {
+    var cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: false, garbageCollectorTimeInterval: 50,  debugMode: false});
+    it("Remove Expired keys", function functionName(done) {
+      cacheInstance2.set(11, 11);
+      assert.strictEqual(cacheInstance2.get(11), 11);
+      setTimeout(function functionName() {
+        assert(!cacheInstance2.set(11, 11), "garbage collector did not remove the expired key");
+        done();
+      }, 300);
+      });
+  });
+
+  describe("testing garbageCollector in Async mode", function functionName() {
+    var cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 50,  debugMode: false});
+    it("Remove Expired keys", function functionName(done) {
+      cacheInstance2.set(22, 22);
+      assert.strictEqual(cacheInstance2.get(22), 22);
+      setTimeout(function functionName() {
+        assert(!cacheInstance2.set(22, 22), "garbage collector did not remove the expired key");
+        done();
+      }, 300);
+      });
   });
 
 });
