@@ -4,6 +4,7 @@ var Cache = require("lite-node-cache");
 
 describe('lite-node-cache', function() {
   describe('create cacheInstance', function functionName() {
+
     it("create instance", function functionName() {
       var cacheInstance = new Cache({ ttl: 200, debugMode: false});
       assert(_.isObjectLike(cacheInstance), "cacheInstance is not a object");
@@ -77,6 +78,10 @@ describe('lite-node-cache', function() {
             done();
           }, 300);
         });
+      });
+
+      describe("testing garbageCollector", function functionName() {
+        
       });
     });
   });
