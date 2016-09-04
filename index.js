@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const _ = require('lodash');
 module.exports = class Cache {
-    constructor({ttl = 30000, garbageCollectorTimeInterval = 10000, garbageCollectorAsyncMode = false,  debugMode = false}) {
+    constructor({ttl = 30000, garbageCollectorTimeInterval = 10000, garbageCollectorAsyncMode = false,  debugMode = false} = {}) {
         this.debugMode = debugMode;
         this.storage = new Map();
         if (Number.isInteger(ttl)) {
