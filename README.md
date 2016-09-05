@@ -77,7 +77,7 @@ var cacheInstance = new Cache({
     debugMode: true
 });
 ```
-#####**Arguments**:
+####**Arguments**:
 
 *options (Object type):*
 
@@ -89,7 +89,7 @@ var cacheInstance = new Cache({
 
 *debugMode (Boolean) (default value: false)* - In this mode, you will receive valuable information that will help you to debug the script.
 
-##### **Returns**:
+#### **Returns**:
 
 *(any type):* the cached value or false if the lifetime value has expired or value is not exist.
 
@@ -97,30 +97,30 @@ var cacheInstance = new Cache({
 ```js
 cacheInstance.get(key);
 ```
-##### **Arguments**:
+#### **Arguments**:
 *key (any type):* key to obtain the value from the cache.
 
-##### **Returns**:
+#### **Returns**:
 *(any type):* the cached value or false if the lifetime value has expired or value is not exist.
 
 ### **set value in cache**
 ```js
 cacheInstance.set(key, value, [ttl = null]);
 ```
-##### **Arguments**:
+#### **Arguments**:
 *key (any type):* key by which it will be possible to get the value from the cache.
 
-##### **Returns**:
+#### **Returns**:
 *(boolean):* it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
 
 ### **delete value in cache**
 ```js
 cacheInstance.delete(key);
 ```
-##### **Arguments**:
+#### **Arguments**:
 *key (any type):* key is removed from the cache;
 
-##### **Returns**:
+#### **Returns**:
 *(boolean):* Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
 
 ----------
