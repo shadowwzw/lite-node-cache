@@ -65,6 +65,45 @@ setInterval(function () {
 }, 1000);
 ```
 ----------
+## **Example with mysql query**
+
+```js
+var Cache = require("lite-node-cache");
+var mysql = require('mysql');
+var cacheInstance = new Cache({
+    ttl: 6000, // the lifetime of the recording in milliseconds
+    garbageCollectorTimeInterval: 10000,
+    garbageCollectorAsyncMode: false,
+    debugMode: true
+});
+
+var connection  = mysql.createPool({
+  connectionLimit : 1,
+  host     : 'localhost',
+  user     : 'me',
+  password : 'secret',
+  database : 'my_db'
+});
+
+setInterval(function () {
+    var query = 'SELECT 1 + 1 AS solution';
+    var result = cacheInstance.get(query);
+    if (result) {
+       console.log("get query result from cache");
+       // do something with result...
+       console.log(result[0].solution); // 2
+    } else {
+        connection.query(query, function (err, rows, fields) {
+            if (err) throw err;
+            cacheInstance.set(query, rows);
+            console.log("new query and save result in cache");
+            // do something with result...
+            console.log(rows[0].solution); // 2
+        });
+    }
+}, 3000);
+```
+----------
 ## **Api**
 
 ### **create cacheInstance**
