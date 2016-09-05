@@ -1,6 +1,6 @@
 {
   "name": "lite-node-cache",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Universal module for caching databases query, http requests and more. Fast start. It is easy to understand. Good test coverage.",
   "main": "index.js",
   "scripts": {
