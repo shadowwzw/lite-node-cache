@@ -7,7 +7,7 @@ module.exports = class Cache {
         if (Number.isInteger(ttl)) {
             this.ttl = ttl;
         } else {
-            throw new Error("universal-lite-node-cache: ttl parameter is not valid");
+            throw new Error("lite-node-cache: ttl parameter is not valid");
         }
         this.elements = [];
         if (Number.isInteger(garbageCollectorTimeInterval) && garbageCollectorTimeInterval >= 0) {
@@ -22,7 +22,7 @@ module.exports = class Cache {
             }
         }
         else {
-            throw new Error("universal-lite-node-cache: garbageCollectorTimeInterval parameter is not valid");
+            throw new Error("lite-node-cache: garbageCollectorTimeInterval parameter is not valid");
         }
         this.garbageCollectorIsExecuted = 0;
     }
@@ -33,7 +33,7 @@ module.exports = class Cache {
             if(item.ttl !== 0){
                 var ttl = (item.ttl !== null) ? item.ttl : this.ttl;
                 if (Date.now() - item.created > ttl) {
-                    this.debug("universal-lite-node-cache: Remove the key when get. ttl elapsed.");
+                    this.debug("lite-node-cache: Remove the key when get. ttl elapsed.");
                     this.delete(key);
                     return false;
                 } else {
@@ -62,7 +62,7 @@ module.exports = class Cache {
 
     set(key, value, ttl = null) {
         if(ttl !== null && ( !Number.isInteger(ttl) && ttl >= 0 )){
-            throw Error("universal-lite-node-cache: ttl parameter is not valid in set method");
+            throw Error("lite-node-cache: ttl parameter is not valid in set method");
         }
         var has = this.storage.has(key);
         var created = Date.now();
@@ -142,15 +142,15 @@ module.exports = class Cache {
     garbageCollector() {
         if (!this.garbageCollectorIsExecuted) {
             this.garbageCollectorIsExecuted++;
-            this.debug("universal-lite-node-cache: garbage collector started");
+            this.debug("lite-node-cache: garbage collector started");
             setInterval(()=> {
                 var removedCount = 0;
                 removedCount += this.removeGarbage();
                 if (removedCount)
-                    this.debug("universal-lite-node-cache: the garbage collector made ​​a clean cache (removed " + removedCount + " items)");
+                    this.debug("lite-node-cache: the garbage collector made ​​a clean cache (removed " + removedCount + " items)");
             }, this.garbageCollectorTimeInterval);
         } else {
-            this.debug("universal-lite-node-cache: the garbage collector is already running");
+            this.debug("lite-node-cache: the garbage collector is already running");
         }
     }
 
@@ -184,7 +184,7 @@ module.exports = class Cache {
     garbageCollectorAsync() {
         if (!this.garbageCollectorIsExecuted) {
             this.garbageCollectorIsExecuted++;
-            this.debug("universal-lite-node-cache: garbage collector started in async mode");
+            this.debug("lite-node-cache: garbage collector started in async mode");
             let self = this;
 
             bluebird.coroutine(function* GCLoop() {
@@ -201,15 +201,15 @@ module.exports = class Cache {
                             var removedArrayResolved = yield bluebird.all(removedArray);
                             removedArrayResolved = _.compact(removedArrayResolved);
                             if (removedArrayResolved.length)
-                                self.debug("universal-lite-node-cache: the garbage collector made ​​a clean cache (removed " + removedArrayResolved.length + " items)");
+                                self.debug("lite-node-cache: the garbage collector made ​​a clean cache (removed " + removedArrayResolved.length + " items)");
                         })();
                     yield bluebird.coroutine(GCLoop)();
                 } catch (err) {
-                    self.debug("universal-lite-node-cache: " + err);
+                    self.debug("lite-node-cache: " + err);
                 }
             })();
         } else {
-            this.debug("universal-lite-node-cache: the garbage collector is already running");
+            this.debug("lite-node-cache: the garbage collector is already running");
         }
     }
 };
