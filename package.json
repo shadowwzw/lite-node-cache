@@ -1,6 +1,6 @@
 {
   "name": "lite-node-cache",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "description": "Universal module for caching databases query, http requests and more. Fast start. It is easy to understand. Good test coverage.",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "author": "Gavrilov Ruslan shadowwzw <miditab@yandex.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shadowwzw/universal-lite-node-cache/issues"
+    "url": "https://github.com/shadowwzw/lite-node-cache/issues"
   },
   "homepage": "https://github.com/shadowwzw/universal-lite-node-cache#readme",
   "dependencies" :
