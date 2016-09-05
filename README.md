@@ -1,4 +1,4 @@
-# lite-node-cache
+# **lite-node-cache**
 Universal module for caching databases query, http requests and more. Fast start. It is easy to understand. Good test coverage.
 This module for [node](http://nodejs.org).
 
@@ -6,13 +6,13 @@ This module for [node](http://nodejs.org).
 [![License](https://img.shields.io/npm/l/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
 [![NPM Downloads](https://img.shields.io/npm/dt/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
 
-## Installation
+## **Installation**
 
 ```bash
 $ npm install lite-node-cache
 ```
-
-## Usage
+----------
+## **Usage**
 
 ```js
 var Cache = require("lite-node-cache");
@@ -35,8 +35,8 @@ setTimeout(function () {
     console.log(item); // false
 }, 6500);
 ```
-
-## Example with http request
+----------
+## **Example with http request**
 
 ```js
 var Cache = require("lite-node-cache");
@@ -64,10 +64,10 @@ setInterval(function () {
     }
 }, 1000);
 ```
+----------
+## **Api**
 
-## Api
-
-### create cacheInstance
+### **create cacheInstance**
 ```js
 var Cache = require("lite-node-cache");
 var cacheInstance = new Cache({
@@ -77,63 +77,63 @@ var cacheInstance = new Cache({
     debugMode: true
 });
 ```
-####Arguments:
+#####**Arguments**:
 
-options (Object type):
+*options (Object type):*
 
-ttl (Integer) (default value: 30000) - the lifetime of the recording in milliseconds,
+*ttl (Integer) (default value: 30000)* - the lifetime of the recording in milliseconds,
 
-garbageCollectorTimeInterval (Integer) (default value: 10000) - frequency of garbage collector,
+*garbageCollectorTimeInterval (Integer) (default value: 10000)* - frequency of garbage collector,
 
-garbageCollectorAsyncMode (Boolean) (default value: false) - Asynchronous cleaning mode in order not to block the execution of the script,
+*garbageCollectorAsyncMode (Boolean) (default value: false)* - Asynchronous cleaning mode in order not to block the execution of the script,
 
-debugMode (Boolean) (default value: false) - In this mode, you will receive valuable information that will help you to debug the script.
+*debugMode (Boolean) (default value: false)* - In this mode, you will receive valuable information that will help you to debug the script.
 
-#### Returns:
+##### **Returns**:
 
-(any type): the cached value or false if the lifetime value has expired or value is not exist.
+*(any type):* the cached value or false if the lifetime value has expired or value is not exist.
 
-### get value from cache
+### **get value from cache**
 ```js
 cacheInstance.get(key);
 ```
-#### Arguments:
-key (any type): key to obtain the value from the cache.
+##### **Arguments**:
+*key (any type):* key to obtain the value from the cache.
 
-#### Returns:
-(any type): the cached value or false if the lifetime value has expired or value is not exist.
+##### **Returns**:
+*(any type):* the cached value or false if the lifetime value has expired or value is not exist.
 
-### set value in cache
+### **set value in cache**
 ```js
 cacheInstance.set(key, value, [ttl = null]);
 ```
-#### Arguments:
-key (any type): key by which it will be possible to get the value from the cache.
+##### **Arguments**:
+*key (any type):* key by which it will be possible to get the value from the cache.
 
-#### Returns:
-(boolean): it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
+##### **Returns**:
+*(boolean):* it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
 
-### delete value in cache
+### **delete value in cache**
 ```js
 cacheInstance.delete(key);
 ```
-#### Arguments:
-key (any type): key is removed from the cache;
+##### **Arguments**:
+*key (any type):* key is removed from the cache;
 
-#### Returns:
-(boolean): Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
+##### **Returns**:
+*(boolean):* Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
 
+----------
 
-## Testing
+## **Testing**
 
 ```bash
 $ npm install mocha -g
 $ cd lite-node-cache
 $ mocha test.js
 ```
-
-
-## License
+----------
+## **License**
 
 The MIT License (MIT)
 
