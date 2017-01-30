@@ -29,12 +29,12 @@ module.exports = class Cache {
 
     get(key) {
         if (this.storage.has(key)) {
-            var item = this.storage.get(key);
+            const item = this.storage.get(key);
             if(item.ttl !== 0){
-                var ttl = (item.ttl !== null) ? item.ttl : this.ttl;
+                const ttl = (item.ttl !== null) ? item.ttl : this.ttl;
                 if (Date.now() - item.created > ttl) {
-                    this.debug("lite-node-cache: Remove the key when get. ttl elapsed.");
                     this.delete(key);
+                    this.debug("lite-node-cache: Removed the key when get. ttl elapsed.");
                     return false;
                 } else {
                     return item.value;
@@ -51,8 +51,7 @@ module.exports = class Cache {
         return new bluebird(function (resolve, reject) {
             setTimeout(()=> {
                 try {
-                    var result = this.get(key);
-                    resolve(result);
+                    resolve(this.get(key));
                 } catch (err) {
                     reject(err);
                 }
@@ -64,11 +63,10 @@ module.exports = class Cache {
         if(ttl !== null && ( !Number.isInteger(ttl) && ttl >= 0 )){
             throw Error("lite-node-cache: ttl parameter is not valid in set method");
         }
-        var has = this.storage.has(key);
-        var created = Date.now();
-        var item = {
+        const has = this.storage.has(key);
+        const item = {
             value,
-            created,
+            created: Date.now(),
             ttl
         };
         this.storage.set(key, item);
@@ -91,8 +89,7 @@ module.exports = class Cache {
         return new bluebird(function (resolve, reject) {
             setTimeout(()=> {
                 try {
-                    var result = this.set(key, value, ttl);
-                    resolve(result);
+                    resolve(this.set(key, value, ttl));
                 } catch (err) {
                     reject(err);
                 }
@@ -101,33 +98,33 @@ module.exports = class Cache {
     }
 
     mget(keys) {
-        var resultArray = [];
-        for (var i = 0; i < keys.length; i++) {
+        const resultArray = [];
+        for (let i = 0; i < keys.length; i++) {
             resultArray.push(this.get(keys[i]));
         }
         return resultArray;
     }
 
     mset(keys, values, ttl) {
-        var resultArray = [];
-        for (var i = 0; i < keys.length; i++) {
+        const resultArray = [];
+        for (let i = 0; i < keys.length; i++) {
             resultArray.push(this.set(keys[i], values[i], ttl[i]));
         }
         return resultArray;
     }
 
-    debug(...spread) {
-        if (this.debugMode) console.log(...spread);
+    debug() {
+        if (this.debugMode) console.log.apply(this, arguments);
     }
 
     removeGarbage() {
-        var removedCount = 0;
+        let removedCount = 0;
         for (let i = 0; i < this.elements.length; i++) {
-            var key = this.elements[i];
+            const key = this.elements[i];
             if (this.storage.has(key)) {
-                var item = this.storage.get(key);
+                const item = this.storage.get(key);
                 if(item.ttl !== 0){
-                    var ttl = ( item.ttl !== null) ? item.ttl : this.ttl;
+                    const ttl = ( item.ttl !== null) ? item.ttl : this.ttl;
                     if (Date.now() - item.created > ttl) {
                         this.delete(key);
                         i--;
@@ -144,7 +141,7 @@ module.exports = class Cache {
             this.garbageCollectorIsExecuted++;
             this.debug("lite-node-cache: garbage collector started");
             setInterval(()=> {
-                var removedCount = 0;
+                let removedCount = 0;
                 removedCount += this.removeGarbage();
                 if (removedCount)
                     this.debug("lite-node-cache: the garbage collector made ​​a clean cache (removed " + removedCount + " items)");
@@ -159,9 +156,9 @@ module.exports = class Cache {
             setTimeout(()=> {
                 try {
                     if (this.storage.has(key)) {
-                        var item = this.storage.get(key);
+                        const item = this.storage.get(key);
                         if(item.ttl !== 0){
-                            var ttl = ( item.ttl !== null ) ? item.ttl : this.ttl;
+                            const ttl = ( item.ttl !== null ) ? item.ttl : this.ttl;
                             if (Date.now() - item.created > ttl) {
                                 this.delete(key);
                                 resolve(true);
@@ -185,12 +182,12 @@ module.exports = class Cache {
         if (!this.garbageCollectorIsExecuted) {
             this.garbageCollectorIsExecuted++;
             this.debug("lite-node-cache: garbage collector started in async mode");
-            let self = this;
+            const self = this;
 
             bluebird.coroutine(function* GCLoop() {
                 try {
                     yield bluebird.delay(self.garbageCollectorTimeInterval);
-                    let removedArray = [];
+                    const removedArray = [];
                     for (let i = 0; i < self.elements.length; i++) {
                         removedArray.push(self.removeGarbageAsync(self.elements[i], self).then(function (result) {
                             return result;
@@ -198,7 +195,7 @@ module.exports = class Cache {
                     }
                     if (self.debugMode)
                         bluebird.coroutine(function* () {
-                            var removedArrayResolved = yield bluebird.all(removedArray);
+                            let removedArrayResolved = yield bluebird.all(removedArray);
                             removedArrayResolved = _.compact(removedArrayResolved);
                             if (removedArrayResolved.length)
                                 self.debug("lite-node-cache: the garbage collector made ​​a clean cache (removed " + removedArrayResolved.length + " items)");

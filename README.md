@@ -1,5 +1,5 @@
 # **lite-node-cache**
-Universal module for caching databases query, http requests and more. Fast start. It is easy to understand. Good test coverage.
+Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage.
 This module for [node](http://nodejs.org).
 
 [![Latest Stable Version](https://img.shields.io/npm/v/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
@@ -15,8 +15,8 @@ $ npm install lite-node-cache
 ## **Usage**
 
 ```js
-var Cache = require("lite-node-cache");
-var cacheInstance = new Cache({
+const Cache = require("lite-node-cache");
+const cacheInstance = new Cache({
     ttl: 6000 // the lifetime of the recording in milliseconds
 });
 
@@ -25,32 +25,31 @@ cacheInstance.set("key1", "value1");
 
 // get value from cache after 3 seconds
 setTimeout(function () {
-    var item = cacheInstance.get("key1");
-    console.log(item); // "value1"
+    console.log(cacheInstance.get("key1")); // "value1"
 }, 3000);
 
 // get value from cache after 6.5 seconds
 setTimeout(function () {
-    var item = cacheInstance.get("key1");
-    console.log(item); // false
+    console.log(cacheInstance.get("key1")); // false
 }, 6500);
 ```
 ----------
 ## **Example with http request**
 
 ```js
-var Cache = require("lite-node-cache");
-var request = require('request');
-var cacheInstance = new Cache({
+const Cache = require("lite-node-cache");
+const request = require('request');
+const cacheInstance = new Cache({
     ttl: 6000, // the lifetime of the recording in milliseconds
     garbageCollectorTimeInterval: 10000,
     garbageCollectorAsyncMode: false,
     debugMode: true
 });
 
+const url = "http://google.ru";
+
 setInterval(function () {
-    var url = "http://google.ru";
-    var result = cacheInstance.get(url);
+    let result = cacheInstance.get(url);
     if (result) {
        console.log("get value from cache");
        // do something with result...
@@ -68,16 +67,16 @@ setInterval(function () {
 ## **Example with mysql query**
 
 ```js
-var Cache = require("lite-node-cache");
-var mysql = require('mysql');
-var cacheInstance = new Cache({
+const Cache = require("lite-node-cache");
+const mysql = require('mysql');
+const cacheInstance = new Cache({
     ttl: 6000, // the lifetime of the recording in milliseconds
     garbageCollectorTimeInterval: 10000,
     garbageCollectorAsyncMode: false,
     debugMode: true
 });
 
-var connection  = mysql.createPool({
+const connection  = mysql.createPool({
   connectionLimit : 1,
   host     : 'localhost',
   user     : 'me',
@@ -86,8 +85,8 @@ var connection  = mysql.createPool({
 });
 
 setInterval(function () {
-    var query = 'SELECT 1 + 1 AS solution';
-    var result = cacheInstance.get(query);
+    let query = 'SELECT 1 + 1 AS solution';
+    let result = cacheInstance.get(query);
     if (result) {
        console.log("get query result from cache");
        // do something with result...
@@ -108,8 +107,8 @@ setInterval(function () {
 
 ### **create cacheInstance**
 ```js
-var Cache = require("lite-node-cache");
-var cacheInstance = new Cache({
+const Cache = require("lite-node-cache");
+const cacheInstance = new Cache({
     ttl: 6000,
     garbageCollectorTimeInterval: 10000,
     garbageCollectorAsyncMode: false,

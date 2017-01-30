@@ -1,12 +1,12 @@
-var assert = require("assert");
-var _ = require("lodash");
-var Cache = require("lite-node-cache");
+const assert = require("assert");
+const _ = require("lodash");
+const Cache = require("./index");
 
 describe('lite-node-cache', function() {
   describe('create cacheInstance', function functionName() {
 
     it("create instance", function functionName() {
-      var cacheInstance = new Cache({ ttl: 200, debugMode: false});
+      const cacheInstance = new Cache({ ttl: 200, debugMode: false});
       assert(_.isObjectLike(cacheInstance), "cacheInstance is not a object");
       assert(_.isFunction(cacheInstance.get, "cacheInstance.get is not a function"));
       assert(_.isFunction(cacheInstance.set, "cacheInstance.set is not a function"));
@@ -33,19 +33,19 @@ describe('lite-node-cache', function() {
             assert(!cacheInstance.set(i+"1", [i]), "set new key must return false");
             assert.strictEqual(cacheInstance.get(i+"1")[0], i);
 
-            let array = [i];
+            const array = [i];
             assert(!cacheInstance.set(array, i), "set new key must return false");
             assert.strictEqual(cacheInstance.get(array), i);
 
-            let obj = {prop: i};
+            const obj = {prop: i};
             assert(!cacheInstance.set(obj, i), "set new key must return false");
             assert.strictEqual(cacheInstance.get(obj), i);
 
-            let array2 = [i];
+            const array2 = [i];
             assert(!cacheInstance.set(array2, array), "set new key must return false");
             assert.strictEqual(cacheInstance.get(array2), array);
 
-            let obj2 = {prop: i};
+            const obj2 = {prop: i};
             assert(!cacheInstance.set(obj2, obj), "set new key must return false");
             assert.strictEqual(cacheInstance.get(obj2), obj);
           }
@@ -93,7 +93,7 @@ describe('lite-node-cache', function() {
   });
 
   describe("testing garbageCollector", function functionName() {
-    var cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: false, garbageCollectorTimeInterval: 50,  debugMode: false});
+    const cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: false, garbageCollectorTimeInterval: 50,  debugMode: false});
     it("Remove Expired keys", function functionName(done) {
       cacheInstance2.set(11, 11);
       assert.strictEqual(cacheInstance2.get(11), 11);
@@ -105,7 +105,7 @@ describe('lite-node-cache', function() {
   });
 
   describe("testing garbageCollector in Async mode", function functionName() {
-    var cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 50,  debugMode: false});
+    const cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 50,  debugMode: false});
     it("Remove Expired keys", function functionName(done) {
       cacheInstance2.set(22, 22);
       assert.strictEqual(cacheInstance2.get(22), 22);
@@ -117,7 +117,7 @@ describe('lite-node-cache', function() {
   });
 
   describe("Testing custom ttl", function functionName() {
-    var cacheInstance2 = new Cache({ ttl: 50, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 10,  debugMode: false});
+    const cacheInstance2 = new Cache({ ttl: 50, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 10,  debugMode: false});
     it("Remove Expired keys", function functionName(done) {
       cacheInstance2.set(22, 22, 150);
       assert.strictEqual(cacheInstance2.get(22), 22);
