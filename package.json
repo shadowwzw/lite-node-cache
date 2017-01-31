@@ -1,6 +1,6 @@
 {
   "name": "lite-node-cache",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage.",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,10 @@
     "node",
     "cache",
     "lite",
-    "universal"
+    "universal",
+    "ES6",
+    "ES2015",
+    "caching"
   ],
   "author": "Gavrilov Ruslan shadowwzw <miditab@yandex.ru>",
   "license": "MIT",
