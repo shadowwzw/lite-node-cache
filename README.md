@@ -119,47 +119,66 @@ const cacheInstance = new Cache({
 
 *options (Object type):*
 
-*ttl (Integer) (default value: 30000)* - the lifetime of the recording in milliseconds,
+*ttl (Integer) (default value: 30000):* The lifetime of the recording in milliseconds,
 
-*garbageCollectorTimeInterval (Integer) (default value: 10000)* - frequency of garbage collector,
+*garbageCollectorTimeInterval (Integer) (default value: 10000):* Frequency of garbage collector (in milliseconds),
 
-*garbageCollectorAsyncMode (Boolean) (default value: false)* - Asynchronous cleaning mode in order not to block the execution of the script,
+*garbageCollectorAsyncMode (Boolean) (default value: false):* Asynchronous cleaning mode in order not to block the execution of the script,
 
-*debugMode (Boolean) (default value: false)* - In this mode, you will receive valuable information that will help you to debug the script.
+*debugMode (Boolean) (default value: false):* In this mode, you will receive valuable information that will help you to debug the script.
 
 #### **Returns**:
 
-*(any type):* the cached value or false if the lifetime value has expired or value is not exist.
+*(any type):* The cached value or false if the lifetime value has expired or value is not exist.
 
 ### **get value from cache**
 ```js
 cacheInstance.get(key);
 ```
 #### **Arguments**:
-*key (any type):* key to obtain the value from the cache.
+*key (any type):* Key to obtain the value from the cache.
 
 #### **Returns**:
-*(any type):* the cached value or false if the lifetime value has expired or value is not exist.
+*(any type):* The cached value or false if the lifetime value has expired or value is not exist.
 
 ### **set value in cache**
 ```js
 cacheInstance.set(key, value, [ttl = null]);
 ```
 #### **Arguments**:
-*key (any type):* key by which it will be possible to get the value from the cache.
+*key (any type):* Key by which it will be possible to get the value from the cache.
+
+*value (any type):* Value for storage in the cache.
+
+*ttl (Integer) (optional):* The lifetime of the recording in milliseconds,
 
 #### **Returns**:
-*(boolean):* it returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
+*(boolean):* It returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
 
 ### **delete value in cache**
 ```js
 cacheInstance.delete(key);
 ```
 #### **Arguments**:
-*key (any type):* key is removed from the cache;
+*key (any type):* Key is removed from the cache;
 
 #### **Returns**:
-*(boolean):* Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
+*(boolean):*: Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
+
+### **get keys from cache**
+```js
+cacheInstance.keys();
+```
+
+#### **Returns**:
+*(Array):* Returns an array of all existing keys in cacheInstance.
+
+#### **Example**:
+```js
+cacheInstance.set("key1", "value1");
+cacheInstance.set("key2", "value2");
+cacheInstance.keys(); // ["key1", "key2"]
+```
 
 ----------
 

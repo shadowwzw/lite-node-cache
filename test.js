@@ -1,3 +1,4 @@
+"use strict";
 const assert = require("assert");
 const _ = require("lodash");
 const Cache = require("./index");
@@ -48,6 +49,22 @@ describe('lite-node-cache', function() {
             const obj2 = {prop: i};
             assert(!cacheInstance.set(obj2, obj), "set new key must return false");
             assert.strictEqual(cacheInstance.get(obj2), obj);
+          }
+        });
+
+        it("testing keys() method", function(){
+          const cacheInstance2 = new Cache({ ttl: 200, debugMode: false});
+          for(let i = 0; i < 20; i++){
+              cacheInstance2.set(i, i);
+              assert(cacheInstance2.keys().length === i+1, "method keys() does not work correctly (length) (number keys)");
+              assert(cacheInstance2.keys()[i] === i, "method keys() does not work correctly (value) (number keys)");
+          }
+          const cacheInstance3 = new Cache({ ttl: 200, debugMode: false});
+          for(let i = 0; i < 20; i++){
+              const obj = {i};
+              cacheInstance3.set(obj, i);
+              assert(cacheInstance3.keys().length === i+1, "method keys() does not work correctly (length) (object keys)");
+              assert(cacheInstance3.keys()[i] === obj, "method keys() does not work correctly (value) (object keys)");
           }
         });
 

@@ -1,3 +1,4 @@
+"use strict";
 const bluebird = require('bluebird');
 const _ = require('lodash');
 module.exports = class Cache {
@@ -111,6 +112,10 @@ module.exports = class Cache {
             resultArray.push(this.set(keys[i], values[i], ttl[i]));
         }
         return resultArray;
+    }
+
+    keys(){
+        return this.elements.slice();
     }
 
     debug() {
