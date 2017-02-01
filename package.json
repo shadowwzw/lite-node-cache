@@ -1,7 +1,7 @@
 {
   "name": "lite-node-cache",
-  "version": "0.6.5",
-  "description": "Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage.",
+  "version": "0.6.6",
+  "description": "Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage. 3.5 times faster than node-cache module.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
