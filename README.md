@@ -119,11 +119,11 @@ const cacheInstance = new Cache({
 
 *options (Object type):*
 
-*ttl (Integer) (default value: 30000):* The lifetime of the recording in milliseconds,
+*ttl (Integer) (default value: 30000):* The lifetime of the recording in milliseconds.
 
-*garbageCollectorTimeInterval (Integer) (default value: 10000):* Frequency of garbage collector (in milliseconds),
+*garbageCollectorTimeInterval (Integer) (default value: 10000):* Frequency of garbage collector (in milliseconds).
 
-*garbageCollectorAsyncMode (Boolean) (default value: false):* Asynchronous cleaning mode in order not to block the execution of the script,
+*garbageCollectorAsyncMode (Boolean) (default value: false) (Experimental option! Recommended false value!):* Asynchronous cleaning mode in order not to block the execution of the script.
 
 *debugMode (Boolean) (default value: false):* In this mode, you will receive valuable information that will help you to debug the script.
 
@@ -150,7 +150,7 @@ cacheInstance.set(key, value, [ttl = null]);
 
 *value (any type):* Value for storage in the cache.
 
-*ttl (Integer) (optional):* The lifetime of the recording in milliseconds,
+*ttl (Integer) (optional):* The lifetime of the recording in milliseconds.
 
 #### **Returns**:
 *(boolean):* It returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
@@ -160,7 +160,7 @@ cacheInstance.set(key, value, [ttl = null]);
 cacheInstance.delete(key);
 ```
 #### **Arguments**:
-*key (any type):* Key is removed from the cache;
+*key (any type):* Key is removed from the cache.
 
 #### **Returns**:
 *(boolean):*: Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
