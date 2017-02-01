@@ -129,7 +129,7 @@ const cacheInstance = new Cache({
 
 #### **Returns**:
 
-*(any type):* The cached value or false if the lifetime value has expired or value is not exist.
+*(Object):* cacheInstance.
 
 ### **get value from cache (Synchronous)**
 ```js
