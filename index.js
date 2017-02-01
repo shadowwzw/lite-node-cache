@@ -194,9 +194,10 @@ module.exports = class Cache {
                     yield bluebird.delay(self.garbageCollectorTimeInterval);
                     const removedArray = [];
                     for (let i = 0; i < self.elements.length; i++) {
-                        removedArray.push(self.removeGarbageAsync(self.elements[i], self).then(function (result) {
+                        const item = yield self.removeGarbageAsync(self.elements[i], self).then(function (result) {
                             return result;
-                        }));
+                        });
+                        removedArray.push(item);
                     }
                     if (self.debugMode)
                         bluebird.coroutine(function* () {
