@@ -124,7 +124,7 @@ module.exports = class Cache {
 
     removeGarbage() {
         let removedCount = 0;
-        for (let i = 0; i < this.elements.length; i++) {
+        for (let i = 0, length = this.elements.length; i < length; i++) {
             const key = this.elements[i];
             if (this.storage.has(key)) {
                 const item = this.storage.get(key);
@@ -132,7 +132,7 @@ module.exports = class Cache {
                     const ttl = ( item.ttl !== null) ? item.ttl : this.ttl;
                     if (Date.now() - item.created > ttl) {
                         this.delete(key);
-                        i--;
+                        length--;
                         removedCount++;
                     }
                 }
