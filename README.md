@@ -131,7 +131,7 @@ const cacheInstance = new Cache({
 
 *(any type):* The cached value or false if the lifetime value has expired or value is not exist.
 
-### **get value from cache**
+### **get value from cache (Synchronous)**
 ```js
 cacheInstance.get(key);
 ```
@@ -141,7 +141,7 @@ cacheInstance.get(key);
 #### **Returns**:
 *(any type):* The cached value or false if the lifetime value has expired or value is not exist.
 
-### **set value in cache**
+### **set value in cache (Synchronous)**
 ```js
 cacheInstance.set(key, value, [ttl = null]);
 ```
@@ -155,7 +155,17 @@ cacheInstance.set(key, value, [ttl = null]);
 #### **Returns**:
 *(boolean):* It returns true if the value has been overwritten and False if the value is not there, and you have created a new one.
 
-### **delete value in cache**
+### **remove key from cache (Synchronous)**
+```js
+cacheInstance.remove(key);
+```
+#### **Arguments**:
+*key (any type):* Key is removed from the cache.
+
+#### **Returns**:
+*(boolean):*: Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
+
+### **delete key in cache (alias of remove) (Synchronous)**
 ```js
 cacheInstance.delete(key);
 ```
@@ -165,7 +175,7 @@ cacheInstance.delete(key);
 #### **Returns**:
 *(boolean):*: Returns true if an element in the cache existed and has been removed, or false if the element does not exist.
 
-### **get keys from cache**
+### **get keys from cache (Synchronous)**
 ```js
 cacheInstance.keys();
 ```

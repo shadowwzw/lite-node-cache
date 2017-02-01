@@ -75,17 +75,6 @@ module.exports = class Cache {
         return has;
     }
 
-    delete(key) {
-        if(this.storage.delete(key)){
-          _.remove(this.elements, function functionName(item) {
-            return item === key;
-          });
-          return true;
-        }else{
-          return false;
-        }
-    }
-
     setAsync(key, value, ttl) {
         return new bluebird(function (resolve, reject) {
             setTimeout(()=> {
@@ -96,6 +85,21 @@ module.exports = class Cache {
                 }
             }, 0);
         });
+    }
+
+    remove(key){
+        return this.delete(key);
+    }
+
+    delete(key) {
+        if(this.storage.delete(key)){
+            _.remove(this.elements, function functionName(item) {
+                return item === key;
+            });
+            return true;
+        }else{
+            return false;
+        }
     }
 
     mget(keys) {
