@@ -1,5 +1,5 @@
 # **lite-node-cache**
-Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage.
+Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage. 3.5 times faster than node-cache module.
 This module for [node](http://nodejs.org).
 
 [![Latest Stable Version](https://img.shields.io/npm/v/lite-node-cache.svg)](https://www.npmjs.com/package/lite-node-cache)
@@ -190,6 +190,50 @@ $ cd lite-node-cache
 $ mocha test.js
 ```
 ----------
+
+## **Benchmark**
+
+### *set and get 1000000 elements (Node v7.4.0):*
+
+```
+lite-node-cache execution time: 0.88 sec.
+
+node-cache execution time: 3.431 sec.
+```
+
+### *source code of benchmark:*
+```js
+const timeStart = Date.now();
+const NodeCache = require( "node-cache" );
+const myCache = new NodeCache();
+
+for(let i = 0; i < 1000000; i++){
+    const random = Math.random();
+    myCache.set(random, random);
+    if(!myCache.get(random)) throw Error("get error");
+}
+
+console.log("elements = ", myCache.keys().length);
+
+console.log("node-cache execution time = ", ((Date.now()-timeStart) / 1000));
+
+
+const timeStart2 = Date.now();
+const Cache = require( "lite-node-cache" );
+const myCache2 = new Cache();
+
+for(let i = 0; i < 1000000; i++){
+    const random = Math.random();
+    myCache2.set(random, random);
+    if(!myCache2.get(random)) throw Error("get error");
+}
+
+console.log("elements = ", myCache2.keys().length);
+
+console.log("lite-node-cache execution time = ", ((Date.now()-timeStart2) / 1000));
+```
+----------
+
 ## **License**
 
 The MIT License (MIT)
