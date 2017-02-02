@@ -1,4 +1,3 @@
-"use strict";
 const assert = require("assert");
 const _ = require("lodash");
 const Cache = require("./index");
@@ -122,45 +121,135 @@ describe('lite-node-cache', function() {
   });
 
   describe("testing garbageCollector", function functionName() {
-    const cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: false, garbageCollectorTimeInterval: 50,  debugMode: false});
+    const cacheInstance = new Cache({ ttl: 200, garbageCollectorAsyncMode: false, garbageCollectorTimeInterval: 50,  debugMode: false});
     it("Remove Expired keys", function functionName(done) {
-      cacheInstance2.set(11, 11);
-      assert.strictEqual(cacheInstance2.get(11), 11);
+      cacheInstance.set(11, 11);
+      assert.strictEqual(cacheInstance.get(11), 11);
       setTimeout(function functionName() {
-        assert(!cacheInstance2.set(11, 11), "garbage collector did not remove the expired key");
+        assert(!cacheInstance.set(11, 11), "garbage collector did not remove the expired key");
         done();
       }, 300);
       });
   });
 
   describe("testing garbageCollector in Async mode", function functionName() {
-    const cacheInstance2 = new Cache({ ttl: 200, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 50,  debugMode: false});
+    const cacheInstance = new Cache({ ttl: 200, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 50,  debugMode: false});
     it("Remove Expired keys", function functionName(done) {
-      cacheInstance2.set(22, 22);
-      assert.strictEqual(cacheInstance2.get(22), 22);
+      cacheInstance.set(22, 22);
+      assert.strictEqual(cacheInstance.get(22), 22);
       setTimeout(function functionName() {
-        assert(!cacheInstance2.set(22, 22), "garbage collector did not remove the expired key");
+        assert(!cacheInstance.set(22, 22), "garbage collector did not remove the expired key");
         done();
       }, 300);
       });
   });
 
   describe("Testing custom ttl", function functionName() {
-    const cacheInstance2 = new Cache({ ttl: 50, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 10,  debugMode: false});
+    const cacheInstance = new Cache({ ttl: 50, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 10,  debugMode: false});
     it("Remove Expired keys", function functionName(done) {
-      cacheInstance2.set(22, 22, 150);
-      assert.strictEqual(cacheInstance2.get(22), 22);
+      cacheInstance.set(22, 22, 150);
+      assert.strictEqual(cacheInstance.get(22), 22);
 
       setTimeout(function functionName() {
-        assert(cacheInstance2.set(22, 22, 100), "should return true if a key replacement");
+        assert(cacheInstance.set(22, 22, 100), "should return true if a key replacement");
 
         setTimeout(function functionName() {
-          assert(!cacheInstance2.set(22, 22), "garbage collector did not remove the expired key");
+          assert(!cacheInstance.set(22, 22), "garbage collector did not remove the expired key");
           done();
         }, 150);
       }, 100);
 
       });
   });
+
+  describe("testing garbageCollector part2", function functionName() {
+        const cacheInstance = new Cache({ ttl: 100, garbageCollectorAsyncMode: false, garbageCollectorTimeInterval: 100,  debugMode: false});
+        it("Remove Expired keys", function functionName(done) {
+            for(let i = 1; i < 4; i++){
+                cacheInstance.set(i, i, 250);
+                cacheInstance.set(i*10, i*10, 500);
+                cacheInstance.set(i*100, i*100, 1000);
+            }
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++){
+                    assert.strictEqual(cacheInstance.get(i), i);
+                    assert.strictEqual(cacheInstance.get(i*10), i*10);
+                    assert.strictEqual(cacheInstance.get(i*100), i*100);
+                }
+            }, 125);
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++){
+                    assert.strictEqual(cacheInstance.get(i), false);
+                    assert.strictEqual(cacheInstance.get(i*10), i*10);
+                    assert.strictEqual(cacheInstance.get(i*100), i*100);
+                }
+            }, 325);
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++) {
+                    assert.strictEqual(cacheInstance.get(i), false);
+                    assert.strictEqual(cacheInstance.get(i * 10), false);
+                    assert.strictEqual(cacheInstance.get(i * 100), i * 100);
+                }
+            }, 750);
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++) {
+                    assert.strictEqual(cacheInstance.get(i), false);
+                    assert.strictEqual(cacheInstance.get(i * 10), false);
+                    assert.strictEqual(cacheInstance.get(i * 100), false);
+                }
+                done();
+            }, 1500);
+
+        });
+  });
+
+    describe("testing garbageCollector in Async mode part2", function functionName() {
+        const cacheInstance = new Cache({ ttl: 100, garbageCollectorAsyncMode: true, garbageCollectorTimeInterval: 100,  debugMode: false});
+        it("Remove Expired keys", function functionName(done) {
+            for(let i = 1; i < 4; i++){
+                cacheInstance.set(i, i, 250);
+                cacheInstance.set(i*10, i*10, 500);
+                cacheInstance.set(i*100, i*100, 1000);
+            }
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++){
+                    assert.strictEqual(cacheInstance.get(i), i);
+                    assert.strictEqual(cacheInstance.get(i*10), i*10);
+                    assert.strictEqual(cacheInstance.get(i*100), i*100);
+                }
+            }, 125);
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++){
+                    assert.strictEqual(cacheInstance.get(i), false);
+                    assert.strictEqual(cacheInstance.get(i*10), i*10);
+                    assert.strictEqual(cacheInstance.get(i*100), i*100);
+                }
+            }, 325);
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++) {
+                    assert.strictEqual(cacheInstance.get(i), false);
+                    assert.strictEqual(cacheInstance.get(i * 10), false);
+                    assert.strictEqual(cacheInstance.get(i * 100), i * 100);
+                }
+            }, 750);
+
+            setTimeout(()=>{
+                for(let i = 1; i < 4; i++) {
+                    assert.strictEqual(cacheInstance.get(i), false);
+                    assert.strictEqual(cacheInstance.get(i * 10), false);
+                    assert.strictEqual(cacheInstance.get(i * 100), false);
+                }
+                done();
+            }, 1500);
+
+        });
+    });
 
 });
