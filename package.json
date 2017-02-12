@@ -1,7 +1,7 @@
 {
   "name": "lite-node-cache",
-  "version": "0.6.11",
-  "description": "Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage. 3.5 times faster than node-cache module.",
+  "version": "0.6.12",
+  "description": "Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +17,15 @@
     "universal",
     "ES6",
     "ES2015",
-    "caching"
+    "caching",
+    "object",
+    "memcached",
+    "internal",
+    "memory",
+    "multi",
+    "variable",
+    "local",
+    "redis"
   ],
   "author": "Gavrilov Ruslan shadowwzw <miditab@yandex.ru>",
   "license": "MIT",
