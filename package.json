@@ -1,6 +1,6 @@
 {
   "name": "lite-node-cache",
-  "version": "0.6.13",
+  "version": "0.6.14",
   "description": "Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage.",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/shadowwzw/lite-node-cache/issues"
   },
-  "homepage": "https://github.com/shadowwzw/universal-lite-node-cache#readme",
+  "homepage": "https://github.com/shadowwzw/lite-node-cache",
   "dependencies" :
   {
     "lodash" : ">=4.0.0",
