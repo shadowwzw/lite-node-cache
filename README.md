@@ -9,7 +9,11 @@ This module for [node](http://nodejs.org).
 ## **Installation**
 
 ```bash
-$ npm install lite-node-cache
+$ npm install lite-node-cache --save
+```
+or
+```bash
+$ yarn add lite-node-cache
 ```
 ----------
 ## **Usage**
