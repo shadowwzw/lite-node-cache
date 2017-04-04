@@ -18,7 +18,7 @@ gulp.task('test', cb => {
           require('babel-plugin-transform-runtime'),
         ]
       }),
-      gulp.dest('/')],
+      gulp.dest('')],
     cb);
 });
 
@@ -40,3 +40,5 @@ gulp.task('cache', cb => {
       gulp.dest('es5')],
     cb);
 });
+
+gulp.task('build', ['test', 'cache']);

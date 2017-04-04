@@ -1,6 +1,6 @@
 const assert = require("assert");
 const _ = require("lodash");
-const Cache = require("./../index");
+const Cache = require("./es5");
 
 describe('lite-node-cache', function () {
   describe('create cacheInstance', function functionName() {

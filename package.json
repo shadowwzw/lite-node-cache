@@ -4,7 +4,8 @@
   "description": "Universal module for caching databases query, http requests and more. Using ES6. Detailed documentation. Good test coverage.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "build": "gulp build"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,8 @@
   "homepage": "https://github.com/shadowwzw/lite-node-cache",
   "dependencies": {
     "lodash": ">=4.0.0",
-    "bluebird": ">=3.0.0"
+    "bluebird": ">=3.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.1",
