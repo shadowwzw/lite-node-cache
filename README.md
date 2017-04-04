@@ -203,9 +203,7 @@ cacheInstance.keys(); // ["key1", "key2"]
 ## **Testing**
 
 ```bash
-$ npm install mocha -g
-$ cd lite-node-cache
-$ mocha test.js
+$ npm run build && npm test
 ```
 ----------
 
