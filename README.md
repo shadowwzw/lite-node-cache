@@ -15,7 +15,8 @@ $ npm install lite-node-cache
 ## **Usage**
 
 ```js
-const Cache = require("lite-node-cache");
+// const Cache = require("lite-node-cache/es5"); // if es6 not support.
+const Cache = require("lite-node-cache"); // if es6 support.
 const cacheInstance = new Cache({
     ttl: 6000 // the lifetime of the recording in milliseconds
 });
@@ -37,7 +38,8 @@ setTimeout(function () {
 ## **Example with http request**
 
 ```js
-const Cache = require("lite-node-cache");
+// const Cache = require("lite-node-cache/es5"); // if es6 not support.
+const Cache = require("lite-node-cache"); // if es6 support.
 const request = require('request');
 const cacheInstance = new Cache({
     ttl: 6000, // the lifetime of the recording in milliseconds
@@ -67,7 +69,8 @@ setInterval(function () {
 ## **Example with mysql query**
 
 ```js
-const Cache = require("lite-node-cache");
+// const Cache = require("lite-node-cache/es5"); // if es6 not support.
+const Cache = require("lite-node-cache"); // if es6 support.
 const mysql = require('mysql');
 const cacheInstance = new Cache({
     ttl: 6000, // the lifetime of the recording in milliseconds
@@ -107,7 +110,8 @@ setInterval(function () {
 
 ### **create cacheInstance**
 ```js
-const Cache = require("lite-node-cache");
+// const Cache = require("lite-node-cache/es5"); // if es6 not support.
+const Cache = require("lite-node-cache"); // if es6 support.
 const cacheInstance = new Cache({
     ttl: 6000,
     garbageCollectorTimeInterval: 10000,
